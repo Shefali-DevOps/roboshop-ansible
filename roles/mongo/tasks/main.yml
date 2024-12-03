@@ -11,8 +11,8 @@
 - name: Update MongoDB config file
   ansible.builtin.replace:
     path: /etc/mongod.conf
-    regexp: 127.0.0.1
-    replace: 0.0.0.0
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
 - name: Start and Enable MongoDB Service
   ansible.builtin.systemd_service:
