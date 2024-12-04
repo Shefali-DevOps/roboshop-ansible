@@ -1,0 +1,17 @@
+- name: Setup system Services
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd
+
+
+- name: Install Golang
+  ansible.builtin.dnf:
+    name: golang
+
+- name: Set App Prerequisite
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: app-prereq
+
+- name: Download Dependencies
+  ansible.builtin.shell: go mod init dispatch ; go get ; go build
