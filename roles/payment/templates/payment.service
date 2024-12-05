@@ -4,13 +4,13 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST={{ secrets.CART_HOST }}
-Environment=CART_PORT={{ secrets.CART_PORT }}
-Environment=USER_HOST={{ secrets.USER_HOST }}
-Environment=USER_PORT={{ secrets.USER_PORT }}
-Environment=AMQP_HOST={{ secrets.AMQP_HOST }}
-Environment=AMQP_USER={{ secrets.AMQP_USER }}
-Environment=AMQP_PASS={{ secrets.AMQP_PASS }}
+Environment=CART_HOST=172.31.80.71
+Environment=CART_PORT=8080
+Environment=USER_HOST=172.31.92.133
+Environment=USER_PORT=8080
+Environment=AMQP_HOST=172.31.94.189
+Environment=AMQP_USER=roboshop
+Environment=AMQP_PASS=roboshop123
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
