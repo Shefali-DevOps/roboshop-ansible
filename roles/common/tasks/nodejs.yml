@@ -1,21 +1,21 @@
-- name: Disable Default Version of nodejs
+- name:  Disable NodeJS Default Version
   ansible.builtin.shell: dnf module disable nodejs -y
 
-- name: Enable nodejs 20 module
+- name:  Enable NodejS 20 Module
   ansible.builtin.shell: dnf module enable nodejs:20 -y
 
-- name: Install nodejs
+- name:  Install Nodejs
   ansible.builtin.dnf:
     name: nodejs
     state: latest
 
-- name: Setup App Prerequisite
+- name: Setup App Prerequisites
   ansible.builtin.include_role:
     name: common
     tasks_from: app-prereq
 
-- name: Download NodeJS Dependencies
-  ansible.builtin.shell: npm install
+- name:  Download NodeJS Dependencies
+  ansible.builtin.shell: npm install # there could be a npm module, However we are still using shell, Since these steps will get removed when CI comes in.
   args:
     chdir: "{{ app_path }}"
 
@@ -23,9 +23,10 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: schema
-    when: schema_setup is defined
+  when: schema_setup is defined
 
-- name: SystemD Setup
+- name: SystemD setup
   ansible.builtin.include_role:
     name: common
     tasks_from: systemd
+
