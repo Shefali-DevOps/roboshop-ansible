@@ -1,5 +1,5 @@
 - name: Load MongoDB Schema
-  when: schema_Setup == "mongo"
+  when: schema_setup == "mongo"
   block:
     - name: COpy MongoDB repo file
       ansible.builtin.template:
@@ -12,4 +12,4 @@
         state: latest
 
     - name: Load Master Data
-      ansible.builtin.shell: mongosh --host 172.31.89.237 </app/db/master-data.js
+      ansible.builtin.shell: mongosh --host 172.31.82.201 </app/db/master-data.js
