@@ -4,7 +4,7 @@ Description = Catalogue Service
 [Service]
 User=roboshop
 Environment=MONGO={{ secrets.MONGO }}
-Environment=MONGO_URL={{ secrets.MONGO_URL }}
+Environment=MONGO_URL="{{ secrets.MONGO_URL }}"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
 
