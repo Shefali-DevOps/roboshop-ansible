@@ -1,4 +1,4 @@
-- name: Load MongoDB Schema
+- name: Load MongoDB schema
   when: schema_setup == "mongo"
   block:
     - name: COpy MongoDB repo file
@@ -12,4 +12,17 @@
         state: latest
 
     - name: Load Master Data
-      ansible.builtin.shell: mongosh --host mongo.dev.shefalidevops.shop </app/db/master-data.js
+      ansible.builtin.shell: mongosh --host mongo.{{ env }}.shefalidevops.shop </app/db/{{ item }}.js
+      loop: "{{schema_files}}"
+
+- name: Load MySQL schema
+  when: schema_setup == "mysql"
+  block:
+    - name: Install mysql Client
+      ansible.builtin.dnf:
+        name: mysql
+        state: latest
+
+    - name: Load Master Data
+      ansible.builtin.shell: mysql -h mysql.{{ env }}.shefalidevops.shop -uroot -p{{ secrets.MYSQL_ROOT_PASSWORD }} < /app/db/{{ item }}.sql
+      loop: "{{schema_files}}"
