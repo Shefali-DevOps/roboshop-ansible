@@ -1,7 +1,7 @@
 component: shipping
 app_path: /app
 schema_setup: mysql
-schema-files:
+schema_files:
   - schema
   - master-data
   - app-user
