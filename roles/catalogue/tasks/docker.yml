@@ -1,0 +1,10 @@
+- name: Run Catalogue Container
+  containers.podman.podman_container:
+    name: catalogue
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/catalogue
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      MONGO: "{{ secrets.MONGO }}"
+      MONGO_URL: "{{ secrets.MONGO_URL }}"

@@ -1,0 +1,10 @@
+- name: Run Shipping Container
+  containers.podman.podman_container:
+    name: shipping
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+    state: started
+    ports:
+      - "8080:8080"
+    env:
+      CART_ENDPOINT: "{{ secrets.CART_ENDPOINT }}"
+      DB_HOST: "{{ secrets.DB_HOST}}"
