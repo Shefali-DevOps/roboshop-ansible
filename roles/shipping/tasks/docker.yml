@@ -8,3 +8,20 @@
     env:
       CART_ENDPOINT: "{{ secrets.CART_ENDPOINT }}"
       DB_HOST: "{{ secrets.DB_HOST}}"
+
+- name: Load Schema Container
+  loop:
+    - app-user
+    - schema
+    - master-data
+  containers.podman.podman_container:
+    name: "{{ item }}"
+    image: public.ecr.aws/w8x4g9h7/roboshop-v3/shipping
+    state: started
+    env:
+      DB_TYPE:  "{{ secrets.DB_TYPE}}"
+      APP_GIT_URL: "{{ secrets.APP_GIT_URL}}"
+      DB_HOST: "{{ secrets.DB_HOST}}"
+      DB_USER: "{{ secrets.MYSQL_ROOT_USER}}"
+      DB_PASS: "{{ secrets.MYSQL_ROOT_PASS}}"
+      SCHEMA_FILE: "db/{{ item }}.sql"

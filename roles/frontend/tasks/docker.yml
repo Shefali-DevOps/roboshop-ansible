@@ -4,8 +4,15 @@
     image: public.ecr.aws/w8x4g9h7/roboshop-v3/frontend
     state: started
     ports:
-      - "8080:8080"
+      - "80:80"
     env:
-      AMQP_HOST: "{{ secrets.AMQP_HOST }}"
-      AMQP_USER: "{{ secrets.AMQP_USER }}"
-      AMQP_PASS: "{{ secrets.AMQP_PASS }}"
+      CATALOGUE_HOST: "{{ secrets.CATALOGUE_HOST }}"
+      CATALOGUE_PORT: "{{ secrets.CATALOGUE_PORT }}"
+      USER_HOST: "{{ secrets.USER_HOST }}"
+      USER_PORT: "{{ secrets.USER_PORT }}"
+      CART_HOST: "{{ secrets.CART_HOST }}"
+      CART_PORT: "{{ secrets.CART_PORT }}"
+      SHIPPING_HOST: "{{ secrets.SHIPPING_HOST }}"
+      SHIPPING_PORT: "{{ secrets.SHIPPING_PORT }}"
+      PAYMENT_HOST: "{{ secrets.PAYMENT_HOST }}"
+      PAYMENT_PORT: "{{ secrets.PAYMENT_PORT }}"
